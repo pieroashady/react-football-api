@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ListClub from './components/ListClub';
+import FootballAreas from './components/FootballAreas';
+import ClubProfile from './components/ClubProfile';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class Index extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route exact path='/areas/:id' component={ListClub} />
+            <Route path='/areas' component={FootballAreas} />
+            <Route exact path='/club-profile/:id' component={ClubProfile} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(<Index />, document.getElementById('root'));
